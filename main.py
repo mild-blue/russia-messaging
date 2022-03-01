@@ -24,7 +24,7 @@ if __name__ == '__main__':
 
     yandex_messenger = YandexMessenger()
     logger.info("1. Browser window with Yandex.ru login page should be opened by now.")
-    logger.info("2. Login (for example with your fake gmail account.")
+    logger.info("2. Login (for example with your fake gmail account).")
     logger.info("3. Navigate to: https://yandex.ru/maps")
     logger.info("4. Navigate to random area in Russia")
     logger.info("5. Search for a venue type (for example `ресторан` for `restaurant`)")
