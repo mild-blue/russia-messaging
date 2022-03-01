@@ -37,6 +37,9 @@ if __name__ == '__main__':
     venue_links = []
     for venue in venues:
         venue_links.append(venue.get_attribute('href'))
+    logger.info(
+        f'Going to review {len(venue_links)} venues. To increase or decrease this number, '
+        f'modify the value of PAGE_DOWN_PRESSES in settings.py')
     for link in venue_links:
         yandex_messenger.driver.get(link)
         yandex_messenger.sleep()
