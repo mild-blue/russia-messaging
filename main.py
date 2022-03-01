@@ -1,5 +1,8 @@
 import logging
 
+from selenium.webdriver.common.by import By
+
+from settings import MESSAGE
 from yandex_messenger import YandexMessenger
 
 if __name__ == '__main__':
@@ -26,5 +29,17 @@ if __name__ == '__main__':
     logger.info("4. Navigate to random area in Russia")
     logger.info("5. Search for a venue type (for example `ресторан` for `restaurant`)")
     input("When done, press Enter to continue...")
-    # yandex_messenger.driver.get('https://yandex.ru/maps')
+
+    venues = yandex_messenger.driver.find_elements(by=By.XPATH, value='//a[@class="search-snippet-view__link-overlay"]')
+    venue_links = []
+    for venue in venues:
+        venue_links.append(venue.get_attribute('href'))
+    for link in venue_links:
+        yandex_messenger.driver.get(link)
+        yandex_messenger.sleep()
+        try:
+            yandex_messenger.write_review(MESSAGE)
+            logger.info(f'Successfully reviewed {link}')
+        except:
+            logger.warning(f'Unsuccessful for {link}')
     yandex_messenger.quit()
