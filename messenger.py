@@ -1,5 +1,4 @@
 import time
-from math import sqrt
 
 import numpy as np
 from selenium import webdriver
@@ -36,7 +35,7 @@ class Messenger:
         self.driver.quit()
 
     def sleep(self):
-        random_time = abs(np.random.normal(loc=self.seconds_to_sleep, scale=sqrt(self.seconds_to_sleep)))
+        random_time = abs(np.random.normal(loc=self.seconds_to_sleep, scale=0.5 * self.seconds_to_sleep))
         time.sleep(random_time)
 
     def write_review(self, review):
