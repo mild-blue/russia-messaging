@@ -1,3 +1,4 @@
+from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.common.by import By
 
 from messenger import Messenger
@@ -40,3 +41,15 @@ class YandexMessenger(Messenger):
         self.sleep()
         self.sleep()
         self.sleep()
+
+    def scroll_down(self, presses: int):
+        list_element = self.driver.find_element(by=By.XPATH,
+                                                value='//div[@class="search-list-view__quarantine-warning"]')
+        action_chains = ActionChains(self.driver)  # initialize ActionChain object
+        action_chains.click(list_element)
+        i = 0
+        while i < presses:
+            action_chains.send_keys(Keys.PAGE_DOWN)
+            action_chains.perform()
+            self.sleep()
+            i = i + 1
