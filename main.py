@@ -28,6 +28,7 @@ if __name__ == '__main__':
     logger.info("3. Navigate to: https://yandex.ru/maps")
     logger.info("4. Navigate to random area in Russia")
     logger.info("5. Search for a venue type (for example `ресторан` for `restaurant`)")
+    yandex_messenger.sleep()
     input("When done, press Enter to continue...")
 
     # Scroll to show more venues.
@@ -47,5 +48,5 @@ if __name__ == '__main__':
             yandex_messenger.write_review(MESSAGE)
             logger.info(f'Successfully reviewed {link}')
         except:
-            logger.warning(f'Unsuccessful for {link}')
+            logger.exception(f'Unsuccessful for {link}')
     yandex_messenger.quit()

@@ -16,9 +16,9 @@ class YandexMessenger(Messenger):
         self.driver.find_element(by=By.XPATH, value=xpath).click()
         self.sleep()
 
-        # Give stars. All stars seem the same, this should click the first available, i.e. 1 star rating.
+        # Give stars. All stars seem the same, this should click the last available, i.e. 5 star rating.
         xpath = '//div[@class="business-rating-edit-view__star _size_s _wide"]'
-        self.driver.find_elements(by=By.XPATH, value=xpath)[4].click()
+        self.driver.find_elements(by=By.XPATH, value=xpath)[-1].click()
         self.sleep()
 
         # Write your message.
