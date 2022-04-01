@@ -1,6 +1,7 @@
 from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.common.by import By
 
+from logger import logger
 from messenger import Messenger
 
 
@@ -10,15 +11,20 @@ class YandexMessenger(Messenger):
     def __init__(self):
         Messenger.__init__(self, 'https://passport.yandex.ru/auth')
 
-    def write_review(self, review):
+    def write_review(self, review, link):
         # go to reviews
         xpath = '//div[@class="tabs-select-view__title _name_reviews"]'
         self.driver.find_element(by=By.XPATH, value=xpath).click()
         self.sleep()
 
-        # Give stars. All stars seem the same, this should click the first available, i.e. 1 star rating.
+        # Give stars. All stars seem the same, this should click the last available, i.e. 5 star rating.
         xpath = '//div[@class="business-rating-edit-view__star _size_s _wide"]'
-        self.driver.find_element(by=By.XPATH, value=xpath).click()
+        stars = self.driver.find_elements(by=By.XPATH, value=xpath)
+        if stars is not None and len(stars) > 0:
+            stars[-1].click()
+        else:
+            logger.warning(f'Unable to find stars at {link}')
+            pass
         self.sleep()
 
         # Write your message.
