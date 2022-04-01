@@ -48,3 +48,6 @@ class Messenger:
             action_chains.send_keys(char)
             action_chains.perform()
             sleep_keyboard()
+
+    def scroll_down(self, presses: int):
+        pass
